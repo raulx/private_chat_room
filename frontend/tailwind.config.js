@@ -2,6 +2,11 @@
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
+    fontFamily: {
+      bebas: ["Bebas Neue", "sans-serif"],
+      inter: ["Inter", "sans-serif"],
+      chewy: ["Chewy", "system-ui"],
+    },
     extend: {
       colors: {
         "primary-dark": "#2E7057",
