@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function HomePage() {
   return (
     <div className="flex flex-col gap-16">
@@ -13,7 +15,7 @@ function HomePage() {
             />
           </div>
           <button className="bg-neutral-light-gray  px-4  py-2 sm:px-8 2xl:py-4 2xl:px-16 2xl:text-2xl font-inter text-primary-dark rounded font-semibold">
-            Create Room
+            <Link to={"/create"}>Create Room</Link>
           </button>
         </div>
         <div className="flex flex-col items-center gap-16">
@@ -24,7 +26,7 @@ function HomePage() {
             />
           </div>
           <button className="bg-neutral-light-pink font-inter text-primary-dark  px-4 py-2 sm:px-8 2xl:py-4 2xl:px-16 2xl:text-2xl rounded font-semibold">
-            Join Room
+            <Link to={"/join"}>Join Room</Link>
           </button>
         </div>
       </div>
