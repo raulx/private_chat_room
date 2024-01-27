@@ -6,9 +6,11 @@ export default {
       bebas: ["Bebas Neue", "sans-serif"],
       inter: ["Inter", "sans-serif"],
       chewy: ["Chewy", "system-ui"],
+      joti: ["Joti One", "serif"],
     },
     extend: {
       colors: {
+        "primary-medium-green": "#1E9A64",
         "primary-dark": "#2E7057",
         "primary-medium": "#04D200",
         "primary-light": "#B0FFAE",
@@ -19,6 +21,7 @@ export default {
         "neutral-dark-gray": "#BBBBBB",
         "accent-red-medium": "#B80303",
         "accent-red-dark": "#5B0404",
+        "accent-light": "#058981",
       },
     },
   },

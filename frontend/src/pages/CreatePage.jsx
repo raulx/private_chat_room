@@ -79,7 +79,7 @@ function CreatePage() {
             type="submit"
             className="py-2 px-4 2xl:py-4 2xl:px-8 bg-neutral-medium-gray sm:text-lg text-md 2xl:text-2xl rounded text-primary-dark w-24  2xl:w-36 font-inter"
           >
-            Create
+            <Link to={"/chat"}>Create</Link>
           </button>
         </form>
       </div>
