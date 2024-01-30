@@ -1,11 +1,37 @@
 import express from "express";
 import dotenv from "dotenv";
 import path from "path";
+import { createServer } from "node:http";
+import { Server } from "socket.io";
 
 dotenv.config();
 
 const app = express();
+
 const PORT = process.env.PORT || 3000;
+
+const httpServer = createServer(app);
+const io = new Server(httpServer, {
+  cors: {
+    origin: ["http://localhost:3300"],
+  },
+});
+
+io.on("connection", (socket) => {
+  socket.on("custom-room", (room) => {
+    if (room) {
+      socket.join(room);
+      socket.on("leave", (room) => {
+        socket.leave(room);
+      });
+      const roomSize = io.sockets.adapter.rooms.get(room)?.size || 0;
+      io.to(room).emit("room-size", roomSize);
+    }
+    socket.on("new-chat", (data) => {
+      socket.to(room).emit("chat-broadcast", data);
+    });
+  });
+});
 
 if (process.env.NODE_ENV === "production") {
   const __dirname = path.resolve();
@@ -20,6 +46,6 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 
-app.listen(PORT, () => {
+httpServer.listen(PORT, () => {
   console.log(`Server is listening at PORT:${PORT}`);
 });

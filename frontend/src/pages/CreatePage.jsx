@@ -1,16 +1,20 @@
 import { FaArrowLeft } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import characters from "../../utils/variables";
-
+import { socket } from "../../utils/socket";
 import UseMyContext from "../hooks/useMyContext";
+import { useNavigate } from "react-router-dom";
 
 function CreatePage() {
-  const { character, changeCharacter } = UseMyContext();
+  const { userData, changeUserData } = UseMyContext();
+  const navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
+    socket.emit("custom-room", userData.roomCode);
+    navigate("/chat");
   };
   const handleSelect = (selectedCharacter) => {
-    changeCharacter(selectedCharacter);
+    changeUserData("character", selectedCharacter);
   };
   return (
     <div>
@@ -31,6 +35,10 @@ function CreatePage() {
             <input
               required
               className="border-b-2 border-primary-dark border-opacity-25 outline-none 2xl:text-2xl"
+              value={userData.userName}
+              onChange={(e) => {
+                changeUserData("userName", e.target.value);
+              }}
             />
           </div>
           <div className="flex flex-col gap-2">
@@ -49,7 +57,7 @@ function CreatePage() {
                   >
                     <div
                       className={
-                        c.character === character
+                        c.character === userData.character
                           ? "rounded-xl border-2 border-gray-700"
                           : "border-none"
                       }
@@ -67,19 +75,23 @@ function CreatePage() {
             </div>
           </div>
           <div className="flex flex-col gap-2">
-            <label className=" font-bebas text-primary-dark text-lg sm:text-xl 2xl:text-3xl">
+            <label className="font-bebas text-primary-dark text-lg sm:text-xl 2xl:text-3xl">
               Set Room code
             </label>
             <input
               required
-              className="border-b-2 border-primary-dark border-opacity-25 outline-none 2xl:text-2xl "
+              className="border-b-2 border-primary-dark border-opacity-25 outline-none 2xl:text-2xl"
+              value={userData.roomCode}
+              onChange={(e) => {
+                changeUserData("roomCode", e.target.value);
+              }}
             />
           </div>
           <button
             type="submit"
             className="py-2 px-4 2xl:py-4 2xl:px-8 bg-neutral-medium-gray sm:text-lg text-md 2xl:text-2xl rounded text-primary-dark w-24  2xl:w-36 font-inter"
           >
-            <Link to={"/chat"}>Create</Link>
+            Create
           </button>
         </form>
       </div>

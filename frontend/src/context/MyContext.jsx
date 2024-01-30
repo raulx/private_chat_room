@@ -4,12 +4,18 @@ import { createContext, useState } from "react";
 const myContext = createContext();
 
 function MyContext({ children }) {
-  const [character, setCharacter] = useState("Doge");
-  const changeCharacter = (val) => {
-    setCharacter(val);
+  const [userData, setUserData] = useState({
+    character: "Doge",
+    userName: "",
+    roomCode: "",
+  });
+  const changeUserData = (action, payload) => {
+    setUserData((prevValue) => {
+      return { ...prevValue, [action]: payload };
+    });
   };
   return (
-    <myContext.Provider value={{ character, changeCharacter }}>
+    <myContext.Provider value={{ userData, changeUserData }}>
       {children}
     </myContext.Provider>
   );
