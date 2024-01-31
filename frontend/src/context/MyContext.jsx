@@ -9,13 +9,19 @@ function MyContext({ children }) {
     userName: "",
     roomCode: "",
   });
+
+  const resetUserData = () => {
+    setUserData(() => {
+      return { character: "Doge", userName: "", roomCode: "" };
+    });
+  };
   const changeUserData = (action, payload) => {
     setUserData((prevValue) => {
       return { ...prevValue, [action]: payload };
     });
   };
   return (
-    <myContext.Provider value={{ userData, changeUserData }}>
+    <myContext.Provider value={{ userData, changeUserData, resetUserData }}>
       {children}
     </myContext.Provider>
   );

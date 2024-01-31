@@ -4,15 +4,26 @@ import characters from "../../utils/variables";
 import { socket } from "../../utils/socket";
 import UseMyContext from "../hooks/useMyContext";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 function CreatePage() {
-  const { userData, changeUserData } = UseMyContext();
+  const { userData, changeUserData, resetUserData } = UseMyContext();
   const navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
-    socket.emit("custom-room", userData.roomCode);
+    socket.emit("custom-room", userData.roomCode, "create", (responseData) => {
+      if (responseData === "exits") {
+        toast.error(`Room already exits with is roomid`, {
+          position: "top-right",
+          autoClose: 5000,
+        });
+        resetUserData();
+        navigate("/");
+      }
+    });
     navigate("/chat");
   };
+
   const handleSelect = (selectedCharacter) => {
     changeUserData("character", selectedCharacter);
   };

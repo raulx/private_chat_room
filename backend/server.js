@@ -18,8 +18,12 @@ const io = new Server(httpServer, {
 });
 
 io.on("connection", (socket) => {
-  socket.on("custom-room", (room) => {
-    if (room) {
+  socket.on("custom-room", (room, type, callback) => {
+    const roomExits = io.sockets.adapter.rooms.has(room);
+
+    if (roomExits && type === "create") {
+      callback("exits");
+    } else if (room) {
       socket.join(room);
       socket.on("leave", (room) => {
         socket.leave(room);
