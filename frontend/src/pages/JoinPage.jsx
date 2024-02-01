@@ -1,15 +1,31 @@
 import { FaArrowLeft } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import UseMyContext from "../hooks/useMyContext";
 import characters from "../../utils/variables";
+import { socket } from "../../utils/socket";
+import { toast } from "react-toastify";
 
 function JoinPage() {
-  const { character, changeCharacter } = UseMyContext();
+  const { userData, changeUserData, resetUserData } = UseMyContext();
+  const navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
+    socket.connect();
+    socket.emit("custom-room", userData.roomCode, "join", (response) => {
+      if (response === "notexist") {
+        toast.error("room does not exist", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: true,
+        });
+        resetUserData();
+        navigate("/");
+      }
+    });
+    navigate("/chat");
   };
   const handleSelect = (selectedCharacter) => {
-    changeCharacter(selectedCharacter);
+    changeUserData("character", selectedCharacter);
   };
   return (
     <div>
@@ -30,6 +46,8 @@ function JoinPage() {
             <input
               required
               className="border-b-2 border-primary-dark border-opacity-25 outline-none 2xl:text-2xl"
+              value={userData.userName}
+              onChange={(e) => changeUserData("userName", e.target.value)}
             />
           </div>
           <div className="flex flex-col gap-2">
@@ -48,7 +66,7 @@ function JoinPage() {
                   >
                     <div
                       className={
-                        c.character === character
+                        c.character === userData.character
                           ? "rounded-xl border-2 border-gray-700"
                           : "border-none"
                       }
@@ -71,7 +89,9 @@ function JoinPage() {
             </label>
             <input
               required
-              className="border-b-2 border-primary-dark border-opacity-25 outline-none 2xl:text-2xl "
+              className="border-b-2 border-primary-dark border-opacity-25 outline-none 2xl:text-2xl"
+              value={userData.roomCode}
+              onChange={(e) => changeUserData("roomCode", e.target.value)}
             />
           </div>
           <button

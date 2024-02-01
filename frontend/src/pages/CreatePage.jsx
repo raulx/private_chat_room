@@ -11,16 +11,24 @@ function CreatePage() {
   const navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
-    socket.emit("custom-room", userData.roomCode, "create", (responseData) => {
-      if (responseData === "exits") {
-        toast.error(`Room already exits with is roomid`, {
-          position: "top-right",
-          autoClose: 5000,
-        });
-        resetUserData();
-        navigate("/");
+    socket.connect();
+    socket.emit(
+      "custom-room",
+      userData.roomCode,
+      "create",
+      (responseData, room) => {
+        if (responseData === "exits") {
+          toast.error(`Room already exits with roomid:${room}`, {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: true,
+          });
+          resetUserData();
+          socket.disconnect();
+          navigate("/");
+        }
       }
-    });
+    );
     navigate("/chat");
   };
 

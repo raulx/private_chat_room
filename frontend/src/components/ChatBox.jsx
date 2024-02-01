@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { FaPaperPlane } from "react-icons/fa";
 import MessageBox from "./MessageBox";
 import { nanoid } from "nanoid";
@@ -7,8 +7,9 @@ import { socket } from "../../utils/socket";
 import UseMyContext from "../hooks/useMyContext";
 
 function ChatBox() {
-  const { userData } = UseMyContext();
+  const { userData, resetUserData } = UseMyContext();
   const [message, setMessage] = useState("");
+  const navigate = useNavigate();
   const [chats, setChats] = useState([]);
   const [totalMembers, setTotalMembers] = useState(0);
 
@@ -55,6 +56,20 @@ function ChatBox() {
     socket.emit("new-chat", { userData, message });
     setMessage("");
   };
+
+  const handleLeaveRoom = () => {
+    socket.emit(
+      "custom-room",
+      userData.roomCode,
+      "leave-room",
+      (responseData) => {
+        console.log(`exited ${responseData}`);
+      }
+    );
+    socket.disconnect();
+    resetUserData();
+    navigate("/");
+  };
   return (
     <div className="sm:w-2/3 w-11/12 bg-neutral-light h-full grid grid-cols-2 grid-rows-12 mx-auto rounded-lg">
       <div className="col-span-2 row-span-1">
@@ -65,15 +80,17 @@ function ChatBox() {
           <p className="text-accent-light font-inter font-semibold sm:text-lg text-xs">
             Connected:{totalMembers}
           </p>
-          <Link to={"/"}>
-            <div className="flex flex-col items-center">
-              <img
-                src="../src/resources/Exit.png"
-                className="sm:w-auto sm:h-auto h-5 w-5"
-              />
-              <p className="font-joti text-xs">Exit</p>
-            </div>
-          </Link>
+
+          <div
+            className="flex flex-col items-center cursor-pointer"
+            onClick={handleLeaveRoom}
+          >
+            <img
+              src="../src/resources/Exit.png"
+              className="sm:w-auto sm:h-auto h-5 w-5"
+            />
+            <p className="font-joti text-xs">Exit</p>
+          </div>
         </div>
       </div>
 
