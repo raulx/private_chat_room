@@ -10,7 +10,7 @@ function HomePage() {
         <div className="flex flex-col items-center gap-16">
           <div className="w-[150px] h-[150px] sm:w-[225px] sm:h-[200px] 2xl:w-[325px] 2xl:h-[300px]">
             <img
-              src="../src/resources/illustration1.png"
+              src="/resources/illustration1.png"
               className="h-full w-full  rounded-lg"
             />
           </div>
@@ -21,7 +21,7 @@ function HomePage() {
         <div className="flex flex-col items-center gap-16">
           <div className="w-[150px] h-[150px] sm:w-[225px] sm:h-[200px] 2xl:w-[325px] 2xl:h-[300px]">
             <img
-              src="../src/resources/illustration2.png"
+              src="/resources/illustration2.png"
               className="h-full w-full  rounded-lg"
             />
           </div>

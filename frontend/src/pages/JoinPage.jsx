@@ -40,18 +40,18 @@ function JoinPage() {
           className="flex flex-col gap-8 2xl:gap-10"
         >
           <div className="flex flex-col gap-2">
-            <label className="font-bebas text-primary-dark text-lg sm:text-xl 2xl:text-3xl">
+            <label className="font-bebas text-primary-dark dark:text-white text-lg sm:text-xl 2xl:text-3xl">
               Enter Your Name
             </label>
             <input
               required
-              className="border-b-2 border-primary-dark border-opacity-25 outline-none 2xl:text-2xl"
+              className="border-b-2 border-primary-dark dark:px-2 dark:text-black border-opacity-25 outline-none 2xl:text-2xl"
               value={userData.userName}
               onChange={(e) => changeUserData("userName", e.target.value)}
             />
           </div>
           <div className="flex flex-col gap-2">
-            <label className="font-bebas text-primary-dark sm:text-xl text-lg 2xl:text-3xl">
+            <label className="font-bebas text-primary-dark dark:text-white sm:text-xl text-lg 2xl:text-3xl">
               select a character
             </label>
             <div className="flex gap-4">
@@ -67,13 +67,11 @@ function JoinPage() {
                     <div
                       className={
                         c.character === userData.character
-                          ? "rounded-xl border-2 border-gray-700"
+                          ? "rounded-xl border-2 border-gray-700 dark:border-gray-50"
                           : "border-none"
                       }
                     >
-                      <img
-                        src={`../src/resources/characters/${c.character}.png`}
-                      />
+                      <img src={`/resources/characters/${c.character}.png`} />
                     </div>
                     <p className="font-inter text-xs 2xl:text-lg">
                       {c.character}
@@ -84,12 +82,12 @@ function JoinPage() {
             </div>
           </div>
           <div className="flex flex-col gap-2">
-            <label className=" font-bebas text-primary-dark text-lg sm:text-xl 2xl:text-3xl">
+            <label className=" font-bebas text-primary-dark dark:text-white text-lg sm:text-xl 2xl:text-3xl">
               Enter Room Code
             </label>
             <input
               required
-              className="border-b-2 border-primary-dark border-opacity-25 outline-none 2xl:text-2xl"
+              className="border-b-2 border-primary-dark dark:px-2 dark:text-black border-opacity-25 outline-none 2xl:text-2xl"
               value={userData.roomCode}
               onChange={(e) => changeUserData("roomCode", e.target.value)}
             />

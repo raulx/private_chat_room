@@ -71,13 +71,16 @@ function ChatBox() {
     navigate("/");
   };
   return (
-    <div className="sm:w-2/3 w-11/12 bg-neutral-light h-full grid grid-cols-2 grid-rows-12 mx-auto rounded-lg">
+    <div className="sm:w-2/3 w-11/12 bg-neutral-light dark:bg-gray-800 h-full grid grid-cols-2 grid-rows-12 mx-auto rounded-lg">
       <div className="col-span-2 row-span-1">
-        <div className="flex justify-between items-center sm:px-10 px-4 py-2 bg-neutral-light-gray rounded-lg">
-          <p className="font-inter text-primary-medium-green sm:text-lg text-xs">
-            Connected to room:{userData.roomCode}
+        <div className="flex justify-between dark:bg-primary-dark items-center sm:px-10 px-4 py-2 bg-neutral-light-gray rounded-lg">
+          <p className="font-inter text-primary-medium-green sm:text-lg text-xs dark:text-primary-light">
+            Connected to room:
+            <span className=" dark:text-primary-light">
+              {userData.roomCode}
+            </span>
           </p>
-          <p className="text-accent-light font-inter font-semibold sm:text-lg text-xs">
+          <p className="text-accent-light font-inter dark:text-white font-semibold sm:text-lg text-xs">
             Connected:{totalMembers}
           </p>
 
@@ -86,7 +89,7 @@ function ChatBox() {
             onClick={handleLeaveRoom}
           >
             <img
-              src="../src/resources/Exit.png"
+              src="/resources/Exit.png"
               className="sm:w-auto sm:h-auto h-5 w-5"
             />
             <p className="font-joti text-xs">Exit</p>
@@ -106,11 +109,11 @@ function ChatBox() {
           );
         })}
       </div>
-      <div className="col-span-2 row-span-1 bg-neutral-dark-gray rounded-lg flex items-center justify-between gap-2 px-8">
+      <div className="col-span-2 row-span-1 dark:bg-primary-dark bg-neutral-dark-gray rounded-lg flex items-center justify-between gap-2 px-8">
         <input
           placeholder="Enter Message"
           type="text"
-          className="w-full p-2 rounded-lg outline-none"
+          className="w-full p-2 rounded-lg outline-none dark:text-black"
           value={message}
           onChange={(e) => setMessage(e.target.value)}
         />
