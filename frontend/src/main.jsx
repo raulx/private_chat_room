@@ -1,18 +1,33 @@
+/* eslint-disable react-refresh/only-export-components */
 import React from "react";
 import ReactDOM from "react-dom/client";
+import { Suspense, lazy } from "react";
 import App from "./App.jsx";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import HomePage from "./pages/HomePage.jsx";
-import CreatePage from "./pages/CreatePage.jsx";
-import JoinPage from "./pages/JoinPage.jsx";
-import MyContext from "./context/MyContext.jsx";
-import ChatPage from "./pages/ChatPage.jsx";
+import Spinner from "./components/Loaders.jsx";
+
+const HomePage = lazy(() => import("./pages/HomePage.jsx"));
+
+const CreatePage = lazy(() => import("./pages/CreatePage.jsx"));
+const JoinPage = lazy(() => import("./pages/JoinPage.jsx"));
+const MyContext = lazy(() => import("./context/MyContext.jsx"));
+const ChatPage = lazy(() => import("./pages/ChatPage.jsx"));
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
+    element: (
+      <Suspense
+        fallback={
+          <div className="h-screen w-screen flex justify-center items-center">
+            <Spinner />
+          </div>
+        }
+      >
+        <App />
+      </Suspense>
+    ),
     children: [
       { index: true, element: <HomePage /> },
       { path: "/create", element: <CreatePage /> },

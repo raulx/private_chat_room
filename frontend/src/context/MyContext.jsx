@@ -5,7 +5,7 @@ const myContext = createContext();
 
 function MyContext({ children }) {
   const [userData, setUserData] = useState({
-    character: "Doge",
+    character: "Doge", // default character
     userName: "",
     roomCode: "",
   });

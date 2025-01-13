@@ -9,6 +9,7 @@ import { toast } from "react-toastify";
 function CreatePage() {
   const { userData, changeUserData, resetUserData } = UseMyContext();
   const navigate = useNavigate();
+
   const handleSubmit = (e) => {
     e.preventDefault();
     socket.connect();
@@ -35,6 +36,7 @@ function CreatePage() {
   const handleSelect = (selectedCharacter) => {
     changeUserData("character", selectedCharacter);
   };
+
   return (
     <div>
       <div className="md:mx-20 my-4 mx-4">
