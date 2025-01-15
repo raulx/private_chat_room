@@ -8,7 +8,6 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Spinner from "./components/Loaders.jsx";
 
 const HomePage = lazy(() => import("./pages/HomePage.jsx"));
-
 const CreatePage = lazy(() => import("./pages/CreatePage.jsx"));
 const JoinPage = lazy(() => import("./pages/JoinPage.jsx"));
 const MyContext = lazy(() => import("./context/MyContext.jsx"));
