@@ -39,6 +39,8 @@ io.on("connection", (socket) => {
   });
 });
 
+const __dirname = path.resolve();
+
 app.use(
   "/assets",
   express.static(path.join(__dirname, "/frontend/dist/assets"), {
@@ -51,8 +53,6 @@ app.use(
 );
 
 if (process.env.NODE_ENV === "production") {
-  const __dirname = path.resolve();
-
   app.use(express.static(path.join(__dirname, "/frontend/dist")));
 
   app.get("*", (req, res) => {
