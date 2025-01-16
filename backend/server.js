@@ -39,21 +39,21 @@ io.on("connection", (socket) => {
   });
 });
 
+app.use(
+  "/assets",
+  express.static(path.join(__dirname, "/frontend/dist/assets"), {
+    setHeaders: (res, path) => {
+      if (path.endsWith(".js")) {
+        res.setHeader("Content-Type", "application/javascript");
+      }
+    },
+  })
+);
+
 if (process.env.NODE_ENV === "production") {
   const __dirname = path.resolve();
 
   app.use(express.static(path.join(__dirname, "/frontend/dist")));
-
-  app.use(
-    "/assets",
-    express.static(path.join(__dirname, "/frontend/dist/assets"), {
-      setHeaders: (res, path) => {
-        if (path.endsWith(".js")) {
-          res.setHeader("Content-Type", "application/javascript");
-        }
-      },
-    })
-  );
 
   app.get("*", (req, res) => {
     res.sendFile(path.resolve(__dirname, "frontend", "dist", "index.html"));
