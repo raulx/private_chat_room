@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "server": "nodemon ./backend/server.js",
-    "production": "npm run build --prefix frontend && node ./backend/server.js",
+    "production": "node ./backend/server.js",
     "client": "npm run dev --prefix frontend",
     "build": "npm run build --prefix frontend",
     "dev": "concurrently \"npm run server\" \"npm run client\""
