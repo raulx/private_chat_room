@@ -1,39 +1,30 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { DarkModeSwitch } from "react-toggle-dark-mode";
 import { Link } from "react-router-dom";
 
 function Navbar() {
-  const [viewMode, setViewMode] = useState("light");
   const [isDarkMode, setDarkMode] = useState(false);
 
-  useEffect(() => {
-    document.querySelector("html").classList.remove("dark");
-    document.querySelector("html").classList.add(viewMode);
-  }, [viewMode]);
-
-  const handleDarkMode = () => {
-    if (viewMode === "light") {
-      setViewMode("dark");
-    } else {
-      setViewMode("light");
-    }
-  };
-
   const toggleDarkMode = (checked) => {
+    if (checked) {
+      document.querySelector("html").classList.add("dark");
+    } else {
+      document.querySelector("html").classList.remove("dark");
+    }
     setDarkMode(checked);
   };
 
   return (
-    <div className="bg-neutral-light-gray sm:px-6 py-4 px-3 flex justify-between items-center dark:bg-primary-dark  dark:text-white transition-all duration-200 2xl:py-8 2xl:px-12">
+    <div className="bg-neutral-light-gray sm:px-6 py-4 px-4 flex justify-between items-center dark:bg-primary-dark  dark:text-white transition-all duration-200 2xl:py-8 2xl:px-12">
       <div className="h-[24px] w-[24px] sm:w-[48px] sm:h-[48px] 2xl:w-[72px] 2xl:h-[72px]">
         <Link to={"/"}>
-          <img src="/resources/logo.png" className="h-full w-full" />
+          <img src="/resources/img1.png" className="h-full w-full" />
         </Link>
       </div>
 
       <div className="flex justify-between items-center gap-10">
         <img
-          src="/resources/img1.png"
+          src="/resources/logo.png"
           className="h-[24px] w-[24px] sm:h-[36px] sm:w-[36px] 2xl:h-[64px] 2xl:w-[64px]"
         />
         <h1 className="font-bebas tracking-wider uppercase text-primary-dark font-semibold text-xl sm:text-2xl dark:text-white transition-all duration-200 2xl:text-4xl">
@@ -46,7 +37,7 @@ function Navbar() {
       </div>
 
       <div>
-        <button className="my-auto" onClick={handleDarkMode}>
+        <button className="my-auto">
           <DarkModeSwitch checked={isDarkMode} onChange={toggleDarkMode} />
         </button>
       </div>

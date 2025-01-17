@@ -10,6 +10,8 @@ function MyContext({ children }) {
     roomCode: "",
   });
 
+  const [totalMembers, setTotalMembers] = useState(0);
+
   const resetUserData = () => {
     setUserData(() => {
       return { character: "Doge", userName: "", roomCode: "" };
@@ -21,7 +23,15 @@ function MyContext({ children }) {
     });
   };
   return (
-    <myContext.Provider value={{ userData, changeUserData, resetUserData }}>
+    <myContext.Provider
+      value={{
+        userData,
+        changeUserData,
+        resetUserData,
+        totalMembers,
+        setTotalMembers,
+      }}
+    >
       {children}
     </myContext.Provider>
   );

@@ -6,7 +6,8 @@ import { toast } from "react-toastify";
 import Characters from "../components/Characters";
 
 function JoinPage() {
-  const { userData, changeUserData, resetUserData } = UseMyContext();
+  const { userData, changeUserData, resetUserData, setTotalMembers } =
+    UseMyContext();
 
   const navigate = useNavigate();
 
@@ -23,6 +24,9 @@ function JoinPage() {
         resetUserData();
         navigate("/");
       }
+    });
+    socket.on("room-size", (val) => {
+      setTotalMembers(val);
     });
     navigate("/chat");
   };

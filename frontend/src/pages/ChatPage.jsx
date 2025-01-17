@@ -4,15 +4,15 @@ import MessageBox from "../components/MessageBox";
 import { nanoid } from "nanoid";
 import { useEffect, useState } from "react";
 import { socket } from "../../utils/socket";
-
 import UseMyContext from "../hooks/useMyContext";
+import { toast } from "react-toastify";
 
 function ChatPage() {
-  const { userData, resetUserData } = UseMyContext();
+  const { userData, resetUserData, totalMembers, setTotalMembers } =
+    UseMyContext();
   const [message, setMessage] = useState("");
   const navigate = useNavigate();
   const [chats, setChats] = useState([]);
-  const [totalMembers, setTotalMembers] = useState(0);
 
   useEffect(() => {
     socket.on("room-size", (val) => {
@@ -21,7 +21,7 @@ function ChatPage() {
     return () => {
       socket.off("room-size");
     };
-  }, [totalMembers]);
+  }, [totalMembers, setTotalMembers]);
 
   useEffect(() => {
     socket.on("chat-broadcast", (data) => {
@@ -42,7 +42,15 @@ function ChatPage() {
     };
   }, [chats]);
 
-  const handleClick = () => {
+  useEffect(() => {
+    if (userData.roomCode === "") {
+      toast("Disconnected,Join Again.", { type: "error" });
+      navigate("/join");
+    }
+  }, [userData.roomCode, navigate]);
+
+  const handleClick = (e) => {
+    e.preventDefault();
     setChats((prevValue) => {
       return [
         ...prevValue,
@@ -73,8 +81,8 @@ function ChatPage() {
   };
 
   return (
-    <div className="h-screen bg-black py-4 overflow-hidden">
-      <div className="sm:w-2/3 w-11/12 bg-neutral-light dark:bg-gray-800 h-full grid grid-cols-2 grid-rows-12 mx-auto rounded-lg">
+    <div className="h-screen bg-black py-2 sm:px-0 px-2 overflow-hidden">
+      <div className="sm:w-2/3  bg-neutral-light dark:bg-gray-800 h-full grid grid-cols-2 grid-rows-12 mx-auto rounded-lg">
         <div className="col-span-2 row-span-1">
           <div className="flex justify-between dark:bg-primary-dark items-center sm:px-10 px-4 py-2 bg-neutral-light-gray rounded-lg">
             <p className="font-inter text-primary-medium-green sm:text-lg text-xs dark:text-primary-light">
@@ -112,7 +120,11 @@ function ChatPage() {
             );
           })}
         </div>
-        <div className="col-span-2 row-span-1 dark:bg-primary-dark bg-neutral-dark-gray rounded-lg flex items-center justify-between gap-2 px-8">
+
+        <form
+          className="col-span-2 row-span-1 dark:bg-primary-dark bg-neutral-dark-gray  flex items-center px-2 gap-2"
+          onSubmit={(e) => handleClick(e)}
+        >
           <input
             placeholder="Enter Message"
             type="text"
@@ -121,12 +133,12 @@ function ChatPage() {
             onChange={(e) => setMessage(e.target.value)}
           />
           <button
-            className="bg-primary-medium rounded-full h-10 w-10 flex justify-center items-center"
-            onClick={handleClick}
+            type="submit"
+            className="h-10 w-10 rounded-full bg-primary-medium flex justify-center items-center"
           >
-            <FaPaperPlane className="text-xl" />
+            <FaPaperPlane />
           </button>
-        </div>
+        </form>
       </div>
     </div>
   );

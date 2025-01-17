@@ -27,6 +27,8 @@ io.on("connection", (socket) => {
       callback("notexist");
     } else if (roomExits && type === "leave-room") {
       socket.leave(room);
+      const roomSize = io.sockets.adapter.rooms.get(room)?.size || 0;
+      io.to(room).emit("room-size", roomSize);
       callback(room);
     } else if (room) {
       socket.join(room);
