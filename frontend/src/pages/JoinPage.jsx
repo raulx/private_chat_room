@@ -1,13 +1,15 @@
 import { FaArrowLeft } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import UseMyContext from "../hooks/useMyContext";
-import characters from "../../utils/variables";
 import { socket } from "../../utils/socket";
 import { toast } from "react-toastify";
+import Characters from "../components/Characters";
 
 function JoinPage() {
   const { userData, changeUserData, resetUserData } = UseMyContext();
+
   const navigate = useNavigate();
+
   const handleSubmit = (e) => {
     e.preventDefault();
     socket.connect();
@@ -24,9 +26,7 @@ function JoinPage() {
     });
     navigate("/chat");
   };
-  const handleSelect = (selectedCharacter) => {
-    changeUserData("character", selectedCharacter);
-  };
+
   return (
     <div>
       <div className="md:mx-20 my-4 mx-4">
@@ -54,32 +54,8 @@ function JoinPage() {
             <label className="font-bebas text-primary-dark dark:text-white sm:text-xl text-lg 2xl:text-3xl">
               select a character
             </label>
-            <div className="flex gap-4">
-              {characters.map((c) => {
-                return (
-                  <div
-                    key={c.id}
-                    onClick={() => {
-                      handleSelect(c.character);
-                    }}
-                    className="cursor-pointer"
-                  >
-                    <div
-                      className={
-                        c.character === userData.character
-                          ? "rounded-xl border-2 border-gray-700 dark:border-gray-50"
-                          : "border-none"
-                      }
-                    >
-                      <img src={`/resources/characters/${c.character}.png`} />
-                    </div>
-                    <p className="font-inter text-xs 2xl:text-lg">
-                      {c.character}
-                    </p>
-                  </div>
-                );
-              })}
-            </div>
+
+            <Characters />
           </div>
           <div className="flex flex-col gap-2">
             <label className=" font-bebas text-primary-dark dark:text-white text-lg sm:text-xl 2xl:text-3xl">

@@ -14,7 +14,7 @@ function App() {
   }, []);
 
   return (
-    <div className="h-screen w-screen bg-neutral-light dark:bg-black dark:text-white transition-all duration-200">
+    <div className="min-h-screen bg-neutral-light dark:bg-black dark:text-white transition-all duration-200">
       <ToastContainer />
       <>
         <Navbar />

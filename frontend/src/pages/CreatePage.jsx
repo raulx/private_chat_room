@@ -1,10 +1,10 @@
 import { FaArrowLeft } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import characters from "../../utils/variables";
 import { socket } from "../../utils/socket";
 import UseMyContext from "../hooks/useMyContext";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import Characters from "../components/Characters";
 
 function CreatePage() {
   const { userData, changeUserData, resetUserData } = UseMyContext();
@@ -31,10 +31,6 @@ function CreatePage() {
       }
     );
     navigate("/chat");
-  };
-
-  const handleSelect = (selectedCharacter) => {
-    changeUserData("character", selectedCharacter);
   };
 
   return (
@@ -66,32 +62,7 @@ function CreatePage() {
             <label className="font-bebas text-primary-dark dark:text-white sm:text-xl text-lg 2xl:text-3xl">
               select a character
             </label>
-            <div className="flex gap-4">
-              {characters.map((c) => {
-                return (
-                  <div
-                    key={c.id}
-                    onClick={() => {
-                      handleSelect(c.character);
-                    }}
-                    className="cursor-pointer"
-                  >
-                    <div
-                      className={
-                        c.character === userData.character
-                          ? "rounded-xl border-2 border-gray-700 dark:border-gray-50"
-                          : "border-none"
-                      }
-                    >
-                      <img src={`/resources/characters/${c.character}.png`} />
-                    </div>
-                    <p className="font-inter text-xs 2xl:text-lg">
-                      {c.character}
-                    </p>
-                  </div>
-                );
-              })}
-            </div>
+            <Characters />
           </div>
           <div className="flex flex-col gap-2">
             <label className="font-bebas text-primary-dark dark:text-white  text-lg sm:text-xl 2xl:text-3xl">
@@ -114,7 +85,7 @@ function CreatePage() {
           </button>
         </form>
       </div>
-      <p className="font-chewy mt-12 2xl:mt-16 dark:text-accent-red-medium transition-all duration-200 text-md sm:text-xl 2xl:text-3xl text-center text-accent-red-dark sm:w-1/3 w-2/3 mx-auto ">
+      <p className="font-chewy mt-12 2xl:mt-16 dark:text-red-100 transition-all duration-200 text-md sm:text-xl 2xl:text-3xl text-center text-accent-red-dark sm:w-1/3 w-2/3 mx-auto ">
         Note:You can create a room with maximum of six users.
       </p>
     </div>

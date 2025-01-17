@@ -8,7 +8,7 @@ function HomePage() {
       </h1>
       <div className="flex justify-center items-center gap-6">
         <div className="flex flex-col items-center gap-16">
-          <div className="w-[150px] h-[150px] sm:w-[225px] sm:h-[200px] 2xl:w-[325px] 2xl:h-[300px]">
+          <div className="w-[150px] h-[150px] sm:w-[225px] sm:h-[200px] 2xl:w-[325px] 2xl:h-[300px] dark:bg-white dark:rounded-full">
             <img
               src="/resources/illustration1.png"
               className="h-full w-full  rounded-lg"
@@ -19,7 +19,7 @@ function HomePage() {
           </button>
         </div>
         <div className="flex flex-col items-center gap-16">
-          <div className="w-[150px] h-[150px] sm:w-[225px] sm:h-[200px] 2xl:w-[325px] 2xl:h-[300px]">
+          <div className="w-[150px] h-[150px] sm:w-[225px] sm:h-[200px] 2xl:w-[325px] 2xl:h-[300px] dark:bg-white dark:rounded-full">
             <img
               src="/resources/illustration2.png"
               className="h-full w-full  rounded-lg"
@@ -30,7 +30,7 @@ function HomePage() {
           </button>
         </div>
       </div>
-      <p className="font-chewy  dark:text-accent-red-medium transition-all duration-200 text-lg sm:text-2xl 2xl:text-4xl text-center text-accent-red-dark sm:w-1/3 w-2/3 mx-auto mt-6">
+      <p className="font-chewy dark:text-red-100 transition-all duration-200 text-lg sm:text-2xl 2xl:text-4xl text-center text-accent-red-dark sm:w-1/3 w-2/3 mx-auto mt-6">
         we don&apos;t store any chat history everything get lost when you exit.
       </p>
     </div>
