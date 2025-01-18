@@ -6,5 +6,11 @@ export default defineConfig({
   plugins: [react()],
   server: {
     port: 3300,
+    proxy: {
+      "/socket.io": {
+        target: "http://localhost:7000",
+        changeOrigin: true,
+      },
+    },
   },
 });

@@ -31,7 +31,8 @@ function HomePage() {
         </div>
       </div>
       <p className="font-chewy dark:text-red-100 transition-all duration-200 text-lg sm:text-2xl 2xl:text-4xl text-center text-accent-red-dark sm:w-1/3 w-2/3 mx-auto mt-6">
-        we don&apos;t store any chat history everything get lost when you exit.
+        we don&apos;t store any chat history everything get lost when you
+        refresh or exit the window.
       </p>
     </div>
   );

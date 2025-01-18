@@ -14,6 +14,7 @@ function JoinPage() {
   const handleSubmit = (e) => {
     e.preventDefault();
     socket.connect();
+
     socket.emit("custom-room", userData.roomCode, "join", (response) => {
       if (response === "notexist") {
         toast.error("room does not exist", {
@@ -25,9 +26,11 @@ function JoinPage() {
         navigate("/");
       }
     });
+
     socket.on("room-size", (val) => {
       setTotalMembers(val);
     });
+
     navigate("/chat");
   };
 

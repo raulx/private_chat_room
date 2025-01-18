@@ -10,8 +10,11 @@ import { toast } from "react-toastify";
 function ChatPage() {
   const { userData, resetUserData, totalMembers, setTotalMembers } =
     UseMyContext();
+
   const [message, setMessage] = useState("");
+
   const navigate = useNavigate();
+
   const [chats, setChats] = useState([]);
 
   useEffect(() => {
