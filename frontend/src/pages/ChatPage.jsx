@@ -3,7 +3,8 @@ import { FaPaperPlane } from "react-icons/fa";
 import MessageBox from "../components/MessageBox";
 import { nanoid } from "nanoid";
 import { useEffect, useState } from "react";
-import { socket } from "../../utils/socket";
+
+import { socket } from "../utils/socket";
 import UseMyContext from "../hooks/useMyContext";
 import { toast } from "react-toastify";
 

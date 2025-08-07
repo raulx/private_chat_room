@@ -1,7 +1,7 @@
 import { FaArrowLeft } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import UseMyContext from "../hooks/useMyContext";
-import { socket } from "../../utils/socket";
+import { socket } from "../utils/socket";
 import { toast } from "react-toastify";
 import Characters from "../components/Characters";
 

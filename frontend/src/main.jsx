@@ -32,11 +32,11 @@ const router = createBrowserRouter([
       { path: "/create", element: <CreatePage /> },
       { path: "/join", element: <JoinPage /> },
       { path: "/chat", element: <ChatPage /> },
+      {
+        path: "*",
+        element: <h1>Error:Page Not Found.</h1>,
+      },
     ],
-  },
-  {
-    path: "*",
-    element: <h1>Error:Page Not Found.</h1>,
   },
 ]);
 

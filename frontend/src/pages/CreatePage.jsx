@@ -1,6 +1,6 @@
 import { FaArrowLeft } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { socket } from "../../utils/socket";
+import { socket } from "../utils/socket";
 import UseMyContext from "../hooks/useMyContext";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";

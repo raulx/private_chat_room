@@ -1,4 +1,4 @@
-import characters from "../../utils/variables";
+import characters from "../utils/variables";
 import UseMyContext from "../hooks/useMyContext";
 
 function Characters() {
