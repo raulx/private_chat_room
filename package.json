@@ -1,9 +1,6 @@
 {
   "name": "private_chat_room",
   "version": "1.0.0",
-  "description": "",
-  "main": "server.js",
-  "type": "module",
   "scripts": {
     "server": "npm run dev --prefix server",
     "client": "npm run dev --prefix client",

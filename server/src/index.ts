@@ -1,10 +1,7 @@
 import express from "express";
-import dotenv from "dotenv";
 import path from "path";
 import { createServer } from "node:http";
 import { Server } from "socket.io";
-
-dotenv.config();
 
 const app = express();
 
@@ -42,18 +39,19 @@ io.on("connection", (socket) => {
 });
 
 if (process.env.NODE_ENV === "production") {
-  const __dirname = path.resolve();
+  const __dirname = path.resolve("..");
 
-  app.use(express.static(path.join(__dirname, "/frontend/dist")));
+  app.use(express.static(path.join(__dirname, "client", "dist")));
 
-  app.get("*", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "frontend", "dist", "index.html"));
+  app.use((_req, res) => {
+    res.sendFile(path.resolve(__dirname, "client", "dist", "index.html"));
   });
 } else {
-  app.get("/", (req, res) => {
+  app.get("/", (_req, res) => {
     res.send("api is running.");
   });
 }
+
 httpServer.listen(PORT, () => {
   console.log(`Server is listening at PORT:${PORT}`);
 });
