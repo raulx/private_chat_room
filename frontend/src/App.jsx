@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import "./App.css";
 import Navbar from "./components/Navbar";
 import { Outlet } from "react-router-dom";
-import { socket } from "../utils/socket";
+import { socket } from "./utils/socket";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
