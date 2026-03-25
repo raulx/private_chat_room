@@ -56,7 +56,7 @@ function CreatePage() {
             </label>
             <input
               required
-              className="border-b-2 border-primary-dark dark:px-2 dark:text-black border-opacity-25 outline-none 2xl:text-2xl"
+              className="border-b-2 border-primary-dark dark:px-2 dark:text-black border-opacity-25 outline-hidden 2xl:text-2xl"
               value={userData.userName}
               onChange={(e) => {
                 changeUserData("userName", e.target.value);
@@ -75,7 +75,7 @@ function CreatePage() {
             </label>
             <input
               required
-              className="border-b-2 border-primary-dark dark:px-2 dark:text-black  border-opacity-25 outline-none 2xl:text-2xl"
+              className="border-b-2 border-primary-dark dark:px-2 dark:text-black  border-opacity-25 outline-hidden 2xl:text-2xl"
               value={userData.roomCode}
               onChange={(e) => {
                 changeUserData("roomCode", e.target.value);
@@ -84,7 +84,7 @@ function CreatePage() {
           </div>
           <button
             type="submit"
-            className="py-2 px-4 2xl:py-4 2xl:px-8 bg-neutral-medium-gray sm:text-lg text-md 2xl:text-2xl rounded text-primary-dark w-24  2xl:w-36 font-inter"
+            className="py-2 px-4 2xl:py-4 2xl:px-8 bg-neutral-medium-gray sm:text-lg text-md 2xl:text-2xl rounded-sm text-primary-dark w-24  2xl:w-36 font-inter"
           >
             Create
           </button>

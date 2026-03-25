@@ -14,7 +14,7 @@ function HomePage() {
               className="h-full w-full  rounded-lg"
             />
           </div>
-          <button className="bg-neutral-light-gray  px-4  py-2 sm:px-8 2xl:py-4 2xl:px-16 2xl:text-2xl font-inter text-primary-dark rounded font-semibold">
+          <button className="bg-neutral-light-gray  px-4  py-2 sm:px-8 2xl:py-4 2xl:px-16 2xl:text-2xl font-inter text-primary-dark rounded-sm font-semibold">
             <Link to={"/create"}>Create Room</Link>
           </button>
         </div>
@@ -25,7 +25,7 @@ function HomePage() {
               className="h-full w-full  rounded-lg"
             />
           </div>
-          <button className="bg-neutral-light-pink font-inter text-primary-dark  px-4 py-2 sm:px-8 2xl:py-4 2xl:px-16 2xl:text-2xl rounded font-semibold">
+          <button className="bg-neutral-light-pink font-inter text-primary-dark  px-4 py-2 sm:px-8 2xl:py-4 2xl:px-16 2xl:text-2xl rounded-sm font-semibold">
             <Link to={"/join"}>Join Room</Link>
           </button>
         </div>
