@@ -131,7 +131,7 @@ function ChatPage() {
           <input
             placeholder="Enter Message"
             type="text"
-            className="w-full p-2 rounded-lg outline-none dark:text-black"
+            className="w-full p-2 rounded-lg outline-hidden dark:text-black"
             value={message}
             onChange={(e) => setMessage(e.target.value)}
           />

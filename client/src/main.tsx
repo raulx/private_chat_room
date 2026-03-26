@@ -1,4 +1,3 @@
-/* eslint-disable react-refresh/only-export-components */
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { Suspense, lazy } from "react";
@@ -40,10 +39,10 @@ const router = createBrowserRouter([
   },
 ]);
 
-ReactDOM.createRoot(document.getElementById("root")).render(
+ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <MyContext>
       <RouterProvider router={router} />
     </MyContext>
-  </React.StrictMode>
+  </React.StrictMode>,
 );
