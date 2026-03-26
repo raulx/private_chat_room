@@ -1,13 +1,13 @@
-import { useNavigate } from "react-router-dom";
-import { FaPaperPlane } from "react-icons/fa";
-import MessageBox from "../components/MessageBox";
+import UseMyContext from "../../../hooks/useMyContext";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router";
+import { socket } from "../../../utils/socket";
 import { nanoid } from "nanoid";
-import { useEffect, useState } from "react";
-import { socket } from "../utils/socket";
-import UseMyContext from "../hooks/useMyContext";
 import { toast } from "react-toastify";
+import MessageBox from "../../../components/MessageBox";
+import { FaPaperPlane } from "react-icons/fa";
 
-function ChatPage() {
+const ChatScreen = () => {
   const { userData, resetUserData, totalMembers, setTotalMembers } =
     UseMyContext();
 
@@ -145,6 +145,6 @@ function ChatPage() {
       </div>
     </div>
   );
-}
+};
 
-export default ChatPage;
+export default ChatScreen;

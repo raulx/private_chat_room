@@ -9,7 +9,7 @@ export default defineConfig(
   { ignores: ["dist", "dev", "node_modules", "resource", "public"] },
   {
     extends: [js.configs.recommended, ...tseslint.configs.recommended],
-    files: ["**/*.{ts,tsx}"],
+    files: ["**/*.{ts,tsx,jsx}"],
     languageOptions: {
       ecmaVersion: 2020,
       globals: globals.browser,

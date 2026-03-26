@@ -1,11 +1,12 @@
-import { FaArrowLeft } from "react-icons/fa";
-import { Link, useNavigate } from "react-router-dom";
-import UseMyContext from "../hooks/useMyContext";
-import { socket } from "../utils/socket";
+import UseMyContext from "../../../hooks/useMyContext";
+import { useNavigate } from "react-router";
+import { socket } from "../../../utils/socket";
 import { toast } from "react-toastify";
-import Characters from "../components/Characters";
+import { Link } from "react-router";
+import Characters from "../../../components/Characters";
+import { FaArrowLeft } from "react-icons/fa";
 
-function JoinPage() {
+const JoinScreen = () => {
   const { userData, changeUserData, resetUserData, setTotalMembers } =
     UseMyContext();
 
@@ -85,6 +86,6 @@ function JoinPage() {
       </div>
     </div>
   );
-}
+};
 
-export default JoinPage;
+export default JoinScreen;

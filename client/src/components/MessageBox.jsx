@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 function MessageBox({ avatar, text, author }) {
   return (
     <div className="flex items-center gap-4">

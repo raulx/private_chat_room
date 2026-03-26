@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-function HomePage() {
+const HomeScreen: React.FC = () => {
   return (
     <div className="flex flex-col gap-16">
       <h1 className="font-bebas text-lg sm:text-2xl 2xl:text-4xl dark:text-primary-dark transition-all duration-200 2xl:p-4 tracking-wide text-center p-2 sm:w-2/3 bg-primary-light mx-auto rounded-lg mt-4">
@@ -8,7 +8,7 @@ function HomePage() {
       </h1>
       <div className="flex justify-center items-center gap-6">
         <div className="flex flex-col items-center gap-16">
-          <div className="w-[150px] h-[150px] sm:w-[225px] sm:h-[200px] 2xl:w-[325px] 2xl:h-[300px] dark:bg-white dark:rounded-full">
+          <div className="w-37.5 h-37.5 sm:w-56.25 sm:h-50 2xl:w-81.25 2xl:h-75 dark:bg-white dark:rounded-full">
             <img
               src="/resources/illustration1.png"
               className="h-full w-full  rounded-lg"
@@ -19,7 +19,7 @@ function HomePage() {
           </button>
         </div>
         <div className="flex flex-col items-center gap-16">
-          <div className="w-[150px] h-[150px] sm:w-[225px] sm:h-[200px] 2xl:w-[325px] 2xl:h-[300px] dark:bg-white dark:rounded-full">
+          <div className="w-37.5 h-37.5 sm:w-56.25 sm:h-50 2xl:w-81.25 2xl:h-75 dark:bg-white dark:rounded-full">
             <img
               src="/resources/illustration2.png"
               className="h-full w-full  rounded-lg"
@@ -36,6 +36,6 @@ function HomePage() {
       </p>
     </div>
   );
-}
+};
 
-export default HomePage;
+export default HomeScreen;
