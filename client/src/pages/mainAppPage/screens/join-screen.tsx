@@ -12,23 +12,28 @@ const JoinScreen = () => {
 
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
     socket.connect();
 
-    socket.emit("custom-room", userData.roomCode, "join", (response) => {
-      if (response === "notexist") {
-        toast.error("room does not exist", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: true,
-        });
-        resetUserData();
-        navigate("/");
-      }
-    });
+    socket.emit(
+      "custom-room",
+      userData.roomCode,
+      "join",
+      (response: string) => {
+        if (response === "notexist") {
+          toast.error("room does not exist", {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: true,
+          });
+          resetUserData();
+          navigate("/");
+        }
+      },
+    );
 
-    socket.on("room-size", (val) => {
+    socket.on("room-size", (val: number) => {
       setTotalMembers(val);
     });
 

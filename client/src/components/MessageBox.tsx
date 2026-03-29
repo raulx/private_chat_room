@@ -1,4 +1,12 @@
-function MessageBox({ avatar, text, author }) {
+const MessageBox = ({
+  avatar,
+  text,
+  author,
+}: {
+  avatar: string;
+  text: string;
+  author: string;
+}) => {
   return (
     <div className="flex items-center gap-4">
       <div className="flex flex-col overflow-hidden">
@@ -11,6 +19,6 @@ function MessageBox({ avatar, text, author }) {
       <p className="border-2 rounded-lg p-2 sm:text-lg text-xs">{text}</p>
     </div>
   );
-}
+};
 
 export default MessageBox;

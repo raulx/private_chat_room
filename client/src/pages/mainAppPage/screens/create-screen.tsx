@@ -11,14 +11,14 @@ const CreateScreen = () => {
     UseMyContext();
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
     socket.connect();
     socket.emit(
       "custom-room",
       userData.roomCode,
       "create",
-      (responseData, room) => {
+      (responseData: string, room: string) => {
         if (responseData === "exits") {
           toast.error(`Room already exits with roomid:${room}`, {
             position: "top-right",
@@ -31,7 +31,7 @@ const CreateScreen = () => {
         }
       },
     );
-    socket.on("room-size", (val) => {
+    socket.on("room-size", (val: number) => {
       setTotalMembers(val);
     });
 

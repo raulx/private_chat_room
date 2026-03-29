@@ -3,7 +3,7 @@ import UseMyContext from "../hooks/useMyContext";
 
 function Characters() {
   const { userData, changeUserData } = UseMyContext();
-  const handleSelect = (selectedCharacter) => {
+  const handleSelect = (selectedCharacter: string) => {
     changeUserData("character", selectedCharacter);
   };
 

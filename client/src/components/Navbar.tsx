@@ -1,14 +1,14 @@
 import { useState } from "react";
 import { Link } from "react-router";
 
-function Navbar() {
+const Navbar = () => {
   const [isDarkMode, setDarkMode] = useState(false);
 
   const toggleDarkMode = () => {
     if (isDarkMode) {
-      document.querySelector("html").classList.remove("dark");
+      document.querySelector("html")!.classList.remove("dark");
     } else {
-      document.querySelector("html").classList.add("dark");
+      document.querySelector("html")!.classList.add("dark");
     }
     setDarkMode(!isDarkMode);
   };
@@ -43,6 +43,6 @@ function Navbar() {
       </button>
     </div>
   );
-}
+};
 
 export default Navbar;

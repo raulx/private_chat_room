@@ -7,6 +7,13 @@ import { toast } from "react-toastify";
 import MessageBox from "../../../components/MessageBox";
 import { FaPaperPlane } from "react-icons/fa";
 
+type Chat = {
+  id: string;
+  text: string;
+  avatar: string;
+  author: string;
+};
+
 const ChatScreen = () => {
   const { userData, resetUserData, totalMembers, setTotalMembers } =
     UseMyContext();
@@ -15,10 +22,10 @@ const ChatScreen = () => {
 
   const navigate = useNavigate();
 
-  const [chats, setChats] = useState([]);
+  const [chats, setChats] = useState<Chat[]>([]);
 
   useEffect(() => {
-    socket.on("room-size", (val) => {
+    socket.on("room-size", (val: number) => {
       setTotalMembers(val);
     });
     return () => {
@@ -27,19 +34,25 @@ const ChatScreen = () => {
   }, [totalMembers, setTotalMembers]);
 
   useEffect(() => {
-    socket.on("chat-broadcast", (data) => {
-      setChats((prevValue) => {
-        return [
-          ...prevValue,
-          {
-            id: nanoid(),
-            text: data.message,
-            avatar: data.userData.character,
-            author: data.userData.userName,
-          },
-        ];
-      });
-    });
+    socket.on(
+      "chat-broadcast",
+      (data: {
+        message: string;
+        userData: { character: string; userName: string };
+      }) => {
+        setChats((prevValue) => {
+          return [
+            ...prevValue,
+            {
+              id: nanoid(),
+              text: data.message,
+              avatar: data.userData.character,
+              author: data.userData.userName,
+            },
+          ];
+        });
+      },
+    );
     return () => {
       socket.off("chat-broadcast");
     };
@@ -52,7 +65,7 @@ const ChatScreen = () => {
     }
   }, [userData.roomCode, navigate]);
 
-  const handleClick = (e) => {
+  const handleClick = (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
     setChats((prevValue) => {
       return [
@@ -74,7 +87,7 @@ const ChatScreen = () => {
       "custom-room",
       userData.roomCode,
       "leave-room",
-      (responseData) => {
+      (responseData: string) => {
         console.log(`exited ${responseData}`);
       },
     );
@@ -131,7 +144,7 @@ const ChatScreen = () => {
           <input
             placeholder="Enter Message"
             type="text"
-            className="w-full p-2 rounded-lg outline-hidden dark:text-black"
+            className="w-full p-2 rounded-lg bg-white outline-hidden text-black"
             value={message}
             onChange={(e) => setMessage(e.target.value)}
           />
