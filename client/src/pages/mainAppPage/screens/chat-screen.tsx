@@ -1,4 +1,4 @@
-import UseMyContext from "../../../hooks/useMyContext";
+import UseUserDataContext from "../../../hooks/UseUserDataHook";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 import { socket } from "../../../utils/socket";
@@ -16,7 +16,7 @@ type Chat = {
 
 const ChatScreen = () => {
   const { userData, resetUserData, totalMembers, setTotalMembers } =
-    UseMyContext();
+    UseUserDataContext()!;
 
   const [message, setMessage] = useState("");
 

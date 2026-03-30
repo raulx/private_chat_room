@@ -1,4 +1,7 @@
-const characters = [
+const characters: {
+  id: number;
+  character: "Doge" | "drake" | "Grumpy" | "Leo" | "monkey" | "pepe";
+}[] = [
   { id: 1, character: "Doge" },
   { id: 2, character: "drake" },
   { id: 3, character: "Grumpy" },

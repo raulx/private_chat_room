@@ -1,8 +1,8 @@
 import characters from "../utils/variables";
-import UseMyContext from "../hooks/useMyContext";
+import UseUserDataContext from "../hooks/UseUserDataHook";
 
-function Characters() {
-  const { userData, changeUserData } = UseMyContext();
+const Characters: React.FC = () => {
+  const { userData, changeUserData } = UseUserDataContext();
   const handleSelect = (selectedCharacter: string) => {
     changeUserData("character", selectedCharacter);
   };
@@ -36,6 +36,6 @@ function Characters() {
       })}
     </div>
   );
-}
+};
 
 export default Characters;

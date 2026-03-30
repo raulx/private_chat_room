@@ -1,4 +1,4 @@
-import UseMyContext from "../../../hooks/useMyContext";
+import UseUserDataContext from "../../../hooks/UseUserDataHook";
 import { useNavigate } from "react-router";
 import { socket } from "../../../utils/socket";
 import { toast } from "react-toastify";
@@ -8,7 +8,7 @@ import Characters from "../../../components/Characters";
 
 const CreateScreen = () => {
   const { userData, changeUserData, resetUserData, setTotalMembers } =
-    UseMyContext();
+    UseUserDataContext();
   const navigate = useNavigate();
 
   const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {

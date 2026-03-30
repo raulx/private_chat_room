@@ -1,12 +1,8 @@
-const MessageBox = ({
-  avatar,
-  text,
-  author,
-}: {
+const MessageBox: React.FC<{
   avatar: string;
   text: string;
   author: string;
-}) => {
+}> = ({ avatar, text, author }) => {
   return (
     <div className="flex items-center gap-4">
       <div className="flex flex-col overflow-hidden">

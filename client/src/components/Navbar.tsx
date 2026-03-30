@@ -1,14 +1,14 @@
 import { useState } from "react";
 import { Link } from "react-router";
 
-const Navbar = () => {
+const Navbar: React.FC = () => {
   const [isDarkMode, setDarkMode] = useState(false);
 
   const toggleDarkMode = () => {
     if (isDarkMode) {
-      document.querySelector("html")!.classList.remove("dark");
+      document.querySelector("html")?.classList.remove("dark");
     } else {
-      document.querySelector("html")!.classList.add("dark");
+      document.querySelector("html")?.classList.add("dark");
     }
     setDarkMode(!isDarkMode);
   };
